@@ -16,17 +16,17 @@
 body{
  margin:0;
  font-family:Arial, Helvetica, sans-serif;
- background:linear-gradient(180deg,#b71c1c,#8e0000);
+ background:linear-gradient(180deg,#c62828,#8e0000);
  color:#222;
 }
 
 .wrap{
  max-width:480px;
- margin:20px auto;
+ margin:18px auto;
  background:#fff;
- border-radius:14px;
+ border-radius:16px;
  overflow:hidden;
- box-shadow:0 8px 25px rgba(0,0,0,.3);
+ box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
 img{width:100%;display:block}
@@ -39,23 +39,21 @@ img{width:100%;display:block}
 .red{color:var(--red-main);font-weight:bold}
 .center{text-align:center}
 
-h1,h2{margin:0 0 10px}
-
-.price{font-size:28px;color:var(--red-main);font-weight:bold}
+.price{font-size:30px;color:var(--red-main);font-weight:bold}
 .old{color:#777;text-decoration:line-through;font-size:14px}
 
 .btn{
  width:100%;
  background:var(--red-btn);
  color:#fff;
- padding:14px;
+ padding:15px;
  font-size:18px;
  border:none;
- border-radius:10px;
+ border-radius:12px;
  font-weight:bold;
  cursor:pointer;
  margin-top:10px;
- box-shadow:0 4px 12px rgba(211,47,47,.5);
+ box-shadow:0 5px 15px rgba(211,47,47,.5);
 }
 
 ul{padding-left:18px;margin:8px 0}
@@ -66,11 +64,11 @@ input,select,textarea{
  padding:12px;
  margin:6px 0;
  border:1px solid #ccc;
- border-radius:6px;
+ border-radius:8px;
  font-size:15px;
 }
 
-input:focus,textarea:focus,select:focus{
+input:focus,select:focus,textarea:focus{
  outline:none;
  border-color:var(--red-btn);
 }
@@ -79,18 +77,18 @@ input:focus,textarea:focus,select:focus{
 .slider-wrapper{
  position:relative;
  overflow:hidden;
- border-radius:12px;
+ border-radius:14px;
  margin-top:10px;
 }
 
-.slider-container{
+.slider{
  display:flex;
  overflow-x:auto;
  scroll-snap-type:x mandatory;
  -webkit-overflow-scrolling:touch;
 }
 
-.slider-container img{
+.slider img{
  width:100%;
  flex-shrink:0;
  scroll-snap-align:start;
@@ -103,8 +101,8 @@ input:focus,textarea:focus,select:focus{
  background:rgba(0,0,0,.55);
  color:#fff;
  border:none;
- width:38px;
- height:38px;
+ width:40px;
+ height:40px;
  border-radius:50%;
  font-size:22px;
  cursor:pointer;
@@ -114,11 +112,10 @@ input:focus,textarea:focus,select:focus{
 
 /* ===== REVIEW ===== */
 .review-box{
- background:#fff;
  border:2px solid #eee;
- border-radius:12px;
+ border-radius:14px;
  padding:10px;
- height:220px;
+ height:210px;
  overflow-y:auto;
  box-shadow:inset 0 0 8px rgba(0,0,0,.1);
 }
@@ -152,17 +149,24 @@ input:focus,textarea:focus,select:focus{
  background:#fff5f5;
  border:2px dashed var(--red-btn);
  padding:10px;
- border-radius:8px;
+ border-radius:10px;
  margin-top:8px;
  font-weight:bold;
  color:var(--red-main);
+}
+
+.result{
+ margin-top:10px;
+ color:green;
+ font-size:14px;
+ display:none;
 }
 
 .footer{
  background:#f1f1f1;
  font-size:12px;
  text-align:center;
- padding:10px;
+ padding:12px;
 }
 </style>
 </head>
@@ -174,10 +178,10 @@ input:focus,textarea:focus,select:focus{
 <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bannerchinh.png">
 
 <div class="block">
-<h1 class="red">⚠️ NHỎ GỌN – LẮP DỄ – TIẾT KIỆM CHI PHÍ</h1>
+<h2 class="red">⚠️ NHỎ GỌN – LẮP DỄ – TIẾT KIỆM</h2>
 <p>
-<b>SIÊU PHẨM BƠM MINI 12V</b><br>
-✔ Rửa xe – Tưới cây – Bơm bể cá<br>
+<b>BƠM MINI 12V 150W</b><br>
+✔ Rửa xe – Tưới cây – Bơm nước<br>
 ✔ Dùng ắc quy / nguồn 12V
 </p>
 <div class="center">
@@ -196,12 +200,11 @@ input:focus,textarea:focus,select:focus{
 </div>
 
 <div class="block">
-<p class="red">✅ BƠM MINI ĐỘNG CƠ 12V 150W</p>
-<p>XƯỞNG CNC – Bền bỉ – Hoạt động ổn định</p>
+<p class="red">✅ HÌNH ẢNH THỰC TẾ</p>
 
 <div class="slider-wrapper">
  <button class="slider-btn left" onclick="slide(-1)">‹</button>
- <div class="slider-container" id="slider">
+ <div class="slider" id="slider">
   <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/banner.jpg">
   <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bommini1.png">
  </div>
@@ -210,57 +213,75 @@ input:focus,textarea:focus,select:focus{
 </div>
 
 <div class="block">
-<p class="red">⭐ PHẢN HỒI KHÁCH HÀNG</p>
+<p class="red">⭐ KHÁCH HÀNG ĐÁNH GIÁ</p>
 <div class="review-box" id="reviewBox">
- <div class="review"><div class="avatar">PS</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Phạm Sơn</b><br>Chạy cả ngày vẫn mát.</div></div>
- <div class="review"><div class="avatar">TT</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Tám Trần</b><br>Dùng cực tiện.</div></div>
- <div class="review"><div class="avatar">CH</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Anh Cường</b><br>Ăn đứt bơm TQ.</div></div>
+ <div class="review"><div class="avatar">PS</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Phạm Sơn</b><br>Chạy mát, khỏe.</div></div>
+ <div class="review"><div class="avatar">TT</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Tám Trần</b><br>Dùng rất tiện.</div></div>
+ <div class="review"><div class="avatar">CH</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Cường HY</b><br>Đáng tiền.</div></div>
 </div>
 </div>
 
-<div class="block" id="order">
+<div class="block">
 <h2 class="red center">🛒 ĐẶT HÀNG NHANH</h2>
 
 <form id="orderForm">
-<label>Số lượng</label>
 <select id="quantity">
- <option value="1">1</option>
- <option value="2">2</option>
- <option value="3">3</option>
+ <option value="1">1 sản phẩm</option>
+ <option value="2">2 sản phẩm</option>
+ <option value="3">3 sản phẩm</option>
 </select>
 
 <input id="name" placeholder="Họ và tên" required>
 <input id="phone" placeholder="Số điện thoại" required>
-<input id="address" placeholder="Địa chỉ" required>
+<input id="address" placeholder="Địa chỉ nhận hàng" required>
 <textarea id="note" placeholder="Ghi chú"></textarea>
 
 <div class="total-box">Tổng tiền: <span id="total">250.000</span> đ</div>
 <button class="btn">📦 XÁC NHẬN ĐẶT HÀNG</button>
+<div class="result" id="result"></div>
 </form>
 </div>
 
 <div class="block center">
-📞 <b>0867050558</b><br>
+📞 <b>0867 050 558</b><br>
 <a href="https://zalo.me/0867050558">Chat Zalo</a>
 </div>
 
 <div class="footer">
-© XƯỞNG CHẾ TẠO – VŨ THƯ – THÁI BÌNH
+© XƯỞNG CHẾ TẠO – THÁI BÌNH
 </div>
 
 </div>
 
 <script>
 const PRICE=250000;
-const slider=document.getElementById("slider");
-const qty=document.getElementById("quantity");
-const total=document.getElementById("total");
+const API="https://script.google.com/macros/s/AKfycbzJ-vWwzSYYOPA_94vjuXwDk8C4tT2mUonuykl4zbwCivPTUIQZwY17-b1qz-CiKTJd/exec";
 
+const slider=document.getElementById("slider");
 function slide(d){
  slider.scrollBy({left:d*slider.offsetWidth,behavior:"smooth"});
 }
 
+const qty=document.getElementById("quantity");
+const total=document.getElementById("total");
 qty.onchange=()=>total.innerText=(qty.value*PRICE).toLocaleString("vi-VN");
+
+document.getElementById("orderForm").onsubmit=async e=>{
+ e.preventDefault();
+ const data={
+  name:name.value,
+  phone:phone.value,
+  address:address.value,
+  note:note.value,
+  quantity:qty.value,
+  total:qty.value*PRICE
+ };
+ await fetch(API,{method:"POST",body:JSON.stringify(data)});
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").innerHTML="✅ ĐẶT HÀNG THÀNH CÔNG!";
+ e.target.reset();
+ total.innerText=PRICE.toLocaleString("vi-VN");
+};
 
 const box=document.getElementById("reviewBox");
 setInterval(()=>{box.scrollTop+=1;if(box.scrollTop+box.clientHeight>=box.scrollHeight)box.scrollTop=0},40);
