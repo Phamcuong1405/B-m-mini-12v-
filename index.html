@@ -1,29 +1,255 @@
-/* ===== FORM BACKGROUND ĐỎ HIỆN ĐẠI ===== */
-.form-section{
- background:linear-gradient(135deg,#e53935,#b71c1c);
- padding:25px 15px;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>BƠM MINI 12V 150W</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+ --red-main:#b71c1c;
+ --red-btn:#d32f2f;
+ --gray-bg:#f5f5f5;
 }
 
-.form-box{
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial, Helvetica, sans-serif;
+ background:linear-gradient(180deg,#b71c1c,#8e0000);
+ color:#222;
+}
+
+.wrap{
+ max-width:480px;
+ margin:16px auto;
  background:#fff;
- border-radius:10px;
- padding:20px;
- box-shadow:0 6px 20px rgba(0,0,0,0.15);
+ border-radius:12px;
+ overflow:hidden;
+ box-shadow:0 8px 25px rgba(0,0,0,.25);
 }
 
-.form-box input,
-.form-box textarea{
- background:#fafafa;
+img{width:100%;display:block}
+
+.block{
+ padding:16px;
+ border-bottom:1px solid #eee;
 }
 
-.form-box .btn{
- background:linear-gradient(135deg,#d32f2f,#b71c1c);
+.block:last-child{border-bottom:none}
+
+.red{color:var(--red-main);font-weight:bold}
+.center{text-align:center}
+
+h1{
+ font-size:20px;
+ line-height:1.3;
+ margin:0 0 10px;
 }
 
-.form-note{
- font-size:13px;
+.price{
+ font-size:28px;
+ color:var(--red-main);
+ font-weight:bold;
+}
+
+.old{
+ color:#777;
+ text-decoration:line-through;
+ font-size:15px;
+}
+
+.btn{
+ display:block;
+ background:var(--red-btn);
  color:#fff;
- margin-top:10px;
  text-align:center;
- opacity:0.95;
+ padding:15px;
+ margin:14px 0 4px;
+ font-size:18px;
+ border-radius:8px;
+ text-decoration:none;
+ font-weight:bold;
+ box-shadow:0 4px 12px rgba(211,47,47,.4);
 }
+
+.btn:hover{opacity:.9}
+
+ul{padding-left:18px;margin:8px 0}
+li{margin:6px 0}
+
+input,textarea{
+ width:100%;
+ padding:12px;
+ margin:6px 0;
+ border:1px solid #ccc;
+ border-radius:6px;
+ font-size:15px;
+}
+
+input:focus,textarea:focus{
+ outline:none;
+ border-color:var(--red-btn);
+}
+
+/* ===== SLIDER ===== */
+.slider-wrapper{
+ position:relative;
+ width:100%;
+ overflow:hidden;
+ border-radius:10px;
+ margin-top:10px;
+}
+
+.slider-container{
+ display:flex;
+ overflow-x:auto;
+ scroll-snap-type:x mandatory;
+ -webkit-overflow-scrolling:touch;
+}
+
+.slider-container img{
+ width:100%;
+ flex-shrink:0;
+ scroll-snap-align:start;
+}
+
+/* ===== NÚT MŨI TÊN ===== */
+.slider-btn{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ background:rgba(0,0,0,.55);
+ color:#fff;
+ border:none;
+ width:38px;
+ height:38px;
+ border-radius:50%;
+ font-size:22px;
+ cursor:pointer;
+ z-index:10;
+}
+
+.slider-btn.left{left:8px}
+.slider-btn.right{right:8px}
+
+.slider-btn:hover{background:var(--red-btn)}
+
+/* ===== REVIEW ===== */
+.review-box{
+ background:#fafafa;
+ border:1px solid #ddd;
+ border-radius:8px;
+ padding:12px;
+ max-height:220px;
+ overflow-y:auto;
+ font-size:14px;
+}
+
+.review{
+ border-bottom:1px dashed #ccc;
+ padding:8px 0;
+}
+
+.review:last-child{border-bottom:none}
+.stars{color:#fbc02d}
+
+/* ===== FOOTER ===== */
+.footer{
+ background:#f1f1f1;
+ font-size:12px;
+ text-align:center;
+ padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bannerchinh.png">
+
+<div class="block">
+<h1 class="red">⚠️ NHỎ GỌN – LẮP DỄ – TIẾT KIỆM CHI PHÍ</h1>
+
+<p>
+<b>SIÊU PHẨM BƠM MINI 12V</b><br>
+✔ Rửa xe – Tưới cây – Bơm bể cá<br>
+✔ Dùng ắc quy / nguồn 12V<br>
+<b>*SỐ LƯỢNG CÓ HẠN</b>
+</p>
+
+<div class="center">
+ <div class="price">250K</div>
+ <div class="old">300K</div>
+</div>
+
+<a href="#order" class="btn">🔥 ĐẶT MUA NGAY</a>
+</div>
+
+<div class="block">
+<p class="red">❌ VẤN ĐỀ THƯỜNG GẶP</p>
+<ul>
+ <li>Không có điện lưới</li>
+ <li>Cần bơm di động</li>
+ <li>Nhỏ gọn nhưng phải mạnh</li>
+</ul>
+</div>
+
+<div class="block">
+<p class="red">✅ BƠM MINI ĐỘNG CƠ 12V 150W</p>
+<p>XƯỞNG CNC – Bền bỉ – Hoạt động ổn định</p>
+
+<div class="slider-wrapper">
+ <button class="slider-btn left" onclick="slideLeft()">‹</button>
+
+ <div class="slider-container" id="slider">
+  <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/banner.jpg">
+  <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bommini1.png">
+ </div>
+
+ <button class="slider-btn right" onclick="slideRight()">›</button>
+</div>
+</div>
+
+<div class="block">
+<p class="red">⭐ PHẢN HỒI KHÁCH HÀNG</p>
+<div class="review-box">
+ <div class="review"><div class="stars">⭐⭐⭐⭐⭐</div>Phạm Sơn: Bơm mạnh, tiện.</div>
+ <div class="review"><div class="stars">⭐⭐⭐⭐⭐</div>Tám Trần: Dùng rất ổn.</div>
+ <div class="review"><div class="stars">⭐⭐⭐⭐⭐</div>Anh CườngHY: Hàng chuẩn.</div>
+</div>
+</div>
+
+<div class="block" id="order">
+<p class="red center">📝 ĐẶT HÀNG NHANH</p>
+<form>
+ <input placeholder="Họ và tên" required>
+ <input placeholder="Số điện thoại" required>
+ <input placeholder="Địa chỉ nhận hàng" required>
+ <textarea placeholder="Ghi chú"></textarea>
+ <button class="btn">📦 XÁC NHẬN ĐẶT HÀNG</button>
+</form>
+</div>
+
+<div class="block center">
+<p>📞 Hotline: <strong>0867050558</strong></p>
+<a href="https://zalo.me/0867050558">Chat Zalo</a>
+</div>
+
+<div class="footer">
+© XƯỞNG CHẾ TẠO – VŨ THƯ – THÁI BÌNH
+</div>
+
+</div>
+
+<script>
+const slider=document.getElementById('slider');
+function slideLeft(){slider.scrollBy({left:-slider.offsetWidth,behavior:'smooth'})}
+function slideRight(){slider.scrollBy({left:slider.offsetWidth,behavior:'smooth'})}
+</script>
+
+</body>
+</html>
