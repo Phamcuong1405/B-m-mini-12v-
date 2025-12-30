@@ -22,19 +22,27 @@ body{
 
 .wrap{
  max-width:480px;
- margin:16px auto;
+ margin:20px auto;
  background:#fff;
  border-radius:14px;
  overflow:hidden;
  box-shadow:0 8px 25px rgba(0,0,0,.3);
 }
 
-.block{padding:16px;border-bottom:1px solid #eee}
+img{width:100%;display:block}
+
+.block{
+ padding:16px;
+ border-bottom:1px solid #eee;
+}
+
 .red{color:var(--red-main);font-weight:bold}
 .center{text-align:center}
 
+h1,h2{margin:0 0 10px}
+
 .price{font-size:28px;color:var(--red-main);font-weight:bold}
-.old{color:#777;text-decoration:line-through}
+.old{color:#777;text-decoration:line-through;font-size:14px}
 
 .btn{
  width:100%;
@@ -46,7 +54,12 @@ body{
  border-radius:10px;
  font-weight:bold;
  cursor:pointer;
+ margin-top:10px;
+ box-shadow:0 4px 12px rgba(211,47,47,.5);
 }
+
+ul{padding-left:18px;margin:8px 0}
+li{margin:6px 0}
 
 input,select,textarea{
  width:100%;
@@ -57,109 +70,200 @@ input,select,textarea{
  font-size:15px;
 }
 
+input:focus,textarea:focus,select:focus{
+ outline:none;
+ border-color:var(--red-btn);
+}
+
+/* ===== SLIDER ===== */
+.slider-wrapper{
+ position:relative;
+ overflow:hidden;
+ border-radius:12px;
+ margin-top:10px;
+}
+
+.slider-container{
+ display:flex;
+ overflow-x:auto;
+ scroll-snap-type:x mandatory;
+ -webkit-overflow-scrolling:touch;
+}
+
+.slider-container img{
+ width:100%;
+ flex-shrink:0;
+ scroll-snap-align:start;
+}
+
+.slider-btn{
+ position:absolute;
+ top:50%;
+ transform:translateY(-50%);
+ background:rgba(0,0,0,.55);
+ color:#fff;
+ border:none;
+ width:38px;
+ height:38px;
+ border-radius:50%;
+ font-size:22px;
+ cursor:pointer;
+}
+.slider-btn.left{left:8px}
+.slider-btn.right{right:8px}
+
+/* ===== REVIEW ===== */
+.review-box{
+ background:#fff;
+ border:2px solid #eee;
+ border-radius:12px;
+ padding:10px;
+ height:220px;
+ overflow-y:auto;
+ box-shadow:inset 0 0 8px rgba(0,0,0,.1);
+}
+
+.review{
+ display:flex;
+ gap:10px;
+ padding:8px 0;
+ border-bottom:1px dashed #ddd;
+}
+
+.review:last-child{border-bottom:none}
+
+.avatar{
+ width:36px;
+ height:36px;
+ border-radius:50%;
+ background:var(--red-btn);
+ color:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-weight:bold;
+ flex-shrink:0;
+}
+
+.stars{color:#fbc02d;font-size:13px}
+
+/* ===== TOTAL ===== */
 .total-box{
  background:#fff5f5;
  border:2px dashed var(--red-btn);
  padding:10px;
- margin-top:10px;
  border-radius:8px;
- font-size:16px;
+ margin-top:8px;
  font-weight:bold;
  color:var(--red-main);
 }
 
-.result{
- margin-top:10px;
- font-size:14px;
- color:green;
- display:none;
+.footer{
+ background:#f1f1f1;
+ font-size:12px;
+ text-align:center;
+ padding:10px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="wrap">
 
-<div class="block center">
- <h2 class="red">🛒 ĐẶT HÀNG NHANH</h2>
- <p>Giá: <b>250.000đ / 1 sản phẩm</b></p>
+<img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bannerchinh.png">
+
+<div class="block">
+<h1 class="red">⚠️ NHỎ GỌN – LẮP DỄ – TIẾT KIỆM CHI PHÍ</h1>
+<p>
+<b>SIÊU PHẨM BƠM MINI 12V</b><br>
+✔ Rửa xe – Tưới cây – Bơm bể cá<br>
+✔ Dùng ắc quy / nguồn 12V
+</p>
+<div class="center">
+ <div class="price">250.000đ</div>
+ <div class="old">300.000đ</div>
+</div>
 </div>
 
 <div class="block">
-<form id="orderForm">
+<p class="red">❌ VẤN ĐỀ THƯỜNG GẶP</p>
+<ul>
+ <li>Không có điện lưới</li>
+ <li>Cần bơm di động</li>
+ <li>Nhỏ gọn nhưng phải mạnh</li>
+</ul>
+</div>
 
+<div class="block">
+<p class="red">✅ BƠM MINI ĐỘNG CƠ 12V 150W</p>
+<p>XƯỞNG CNC – Bền bỉ – Hoạt động ổn định</p>
+
+<div class="slider-wrapper">
+ <button class="slider-btn left" onclick="slide(-1)">‹</button>
+ <div class="slider-container" id="slider">
+  <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/banner.jpg">
+  <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bommini1.png">
+ </div>
+ <button class="slider-btn right" onclick="slide(1)">›</button>
+</div>
+</div>
+
+<div class="block">
+<p class="red">⭐ PHẢN HỒI KHÁCH HÀNG</p>
+<div class="review-box" id="reviewBox">
+ <div class="review"><div class="avatar">PS</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Phạm Sơn</b><br>Chạy cả ngày vẫn mát.</div></div>
+ <div class="review"><div class="avatar">TT</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Tám Trần</b><br>Dùng cực tiện.</div></div>
+ <div class="review"><div class="avatar">CH</div><div><div class="stars">⭐⭐⭐⭐⭐</div><b>Anh Cường</b><br>Ăn đứt bơm TQ.</div></div>
+</div>
+</div>
+
+<div class="block" id="order">
+<h2 class="red center">🛒 ĐẶT HÀNG NHANH</h2>
+
+<form id="orderForm">
 <label>Số lượng</label>
-<select id="quantity" required>
+<select id="quantity">
  <option value="1">1</option>
  <option value="2">2</option>
  <option value="3">3</option>
- <option value="4">4</option>
- <option value="5">5</option>
 </select>
 
-<label>Họ và tên</label>
-<input id="name" required placeholder="Nhập họ tên">
+<input id="name" placeholder="Họ và tên" required>
+<input id="phone" placeholder="Số điện thoại" required>
+<input id="address" placeholder="Địa chỉ" required>
+<textarea id="note" placeholder="Ghi chú"></textarea>
 
-<label>Số điện thoại</label>
-<input id="phone" required placeholder="Nhập số điện thoại">
-
-<label>Địa chỉ nhận hàng</label>
-<input id="address" required placeholder="Nhập địa chỉ">
-
-<label>Ghi chú</label>
-<textarea id="note" placeholder="Ghi chú thêm"></textarea>
-
-<div class="total-box">
- Tổng tiền: <span id="total">250.000</span> đ
+<div class="total-box">Tổng tiền: <span id="total">250.000</span> đ</div>
+<button class="btn">📦 XÁC NHẬN ĐẶT HÀNG</button>
+</form>
 </div>
 
-<button class="btn" type="submit">📦 XÁC NHẬN ĐẶT HÀNG</button>
+<div class="block center">
+📞 <b>0867050558</b><br>
+<a href="https://zalo.me/0867050558">Chat Zalo</a>
+</div>
 
-<div class="result" id="result"></div>
-
-</form>
+<div class="footer">
+© XƯỞNG CHẾ TẠO – VŨ THƯ – THÁI BÌNH
 </div>
 
 </div>
 
 <script>
-const PRICE = 250000;
-const API_URL = "https://script.google.com/macros/s/AKfycbzJ-vWwzSYYOPA_94vjuXwDk8C4tT2mUonuykl4zbwCivPTUIQZwY17-b1qz-CiKTJd/exec";
+const PRICE=250000;
+const slider=document.getElementById("slider");
+const qty=document.getElementById("quantity");
+const total=document.getElementById("total");
 
-const qty = document.getElementById("quantity");
-const totalEl = document.getElementById("total");
+function slide(d){
+ slider.scrollBy({left:d*slider.offsetWidth,behavior:"smooth"});
+}
 
-qty.onchange = () => {
- totalEl.innerText = (qty.value * PRICE).toLocaleString("vi-VN");
-};
+qty.onchange=()=>total.innerText=(qty.value*PRICE).toLocaleString("vi-VN");
 
-document.getElementById("orderForm").onsubmit = async (e)=>{
- e.preventDefault();
-
- const data = {
-  name: name.value,
-  phone: phone.value,
-  address: address.value,
-  note: note.value,
-  quantity: qty.value,
-  total: qty.value * PRICE
- };
-
- const res = await fetch(API_URL,{
-  method:"POST",
-  body:JSON.stringify(data)
- });
-
- document.getElementById("result").style.display="block";
- document.getElementById("result").innerHTML =
-  "✅ ĐẶT HÀNG THÀNH CÔNG!<br>" +
-  "Số lượng: <b>"+data.quantity+"</b><br>" +
-  "Tổng tiền: <b>"+data.total.toLocaleString("vi-VN")+" đ</b><br>" +
-  "Chúng tôi sẽ liên hệ sớm!";
- 
- e.target.reset();
- totalEl.innerText = PRICE.toLocaleString("vi-VN");
-};
+const box=document.getElementById("reviewBox");
+setInterval(()=>{box.scrollTop+=1;if(box.scrollTop+box.clientHeight>=box.scrollHeight)box.scrollTop=0},40);
 </script>
 
 </body>
