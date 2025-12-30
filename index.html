@@ -29,51 +29,26 @@ body{
  box-shadow:0 8px 25px rgba(0,0,0,.3);
 }
 
-img{width:100%;display:block}
-
-.block{
- padding:16px;
- border-bottom:1px solid #eee;
-}
-
+.block{padding:16px;border-bottom:1px solid #eee}
 .red{color:var(--red-main);font-weight:bold}
 .center{text-align:center}
 
-h1{
- font-size:20px;
- margin:0 0 10px;
-}
-
-.price{
- font-size:28px;
- color:var(--red-main);
- font-weight:bold;
-}
-
-.old{
- color:#777;
- text-decoration:line-through;
- font-size:15px;
-}
+.price{font-size:28px;color:var(--red-main);font-weight:bold}
+.old{color:#777;text-decoration:line-through}
 
 .btn{
- display:block;
+ width:100%;
  background:var(--red-btn);
  color:#fff;
- text-align:center;
- padding:15px;
- margin:14px 0;
+ padding:14px;
  font-size:18px;
+ border:none;
  border-radius:10px;
- text-decoration:none;
  font-weight:bold;
- box-shadow:0 4px 12px rgba(211,47,47,.5);
+ cursor:pointer;
 }
 
-ul{padding-left:18px;margin:8px 0}
-li{margin:6px 0}
-
-input,textarea{
+input,select,textarea{
  width:100%;
  padding:12px;
  margin:6px 0;
@@ -82,232 +57,109 @@ input,textarea{
  font-size:15px;
 }
 
-input:focus,textarea:focus{
- outline:none;
- border-color:var(--red-btn);
-}
-
-/* ===== SLIDER ===== */
-.slider-wrapper{
- position:relative;
- overflow:hidden;
- border-radius:12px;
+.total-box{
+ background:#fff5f5;
+ border:2px dashed var(--red-btn);
+ padding:10px;
  margin-top:10px;
-}
-
-.slider-container{
- display:flex;
- overflow-x:auto;
- scroll-snap-type:x mandatory;
- -webkit-overflow-scrolling:touch;
-}
-
-.slider-container img{
- width:100%;
- flex-shrink:0;
- scroll-snap-align:start;
-}
-
-.slider-btn{
- position:absolute;
- top:50%;
- transform:translateY(-50%);
- background:rgba(0,0,0,.55);
- color:#fff;
- border:none;
- width:38px;
- height:38px;
- border-radius:50%;
- font-size:22px;
- cursor:pointer;
-}
-
-.slider-btn.left{left:8px}
-.slider-btn.right{right:8px}
-
-/* ===== REVIEW NÂNG CAO ===== */
-.review-box{
- background:#fff;
- border:2px solid #eee;
- border-radius:12px;
- padding:10px;
- height:230px;
- overflow-y:auto;
- box-shadow:inset 0 0 8px rgba(0,0,0,.1);
-}
-
-.review-box::-webkit-scrollbar{width:6px}
-.review-box::-webkit-scrollbar-thumb{
- background:var(--red-btn);
- border-radius:6px;
-}
-
-.review{
- display:flex;
- gap:10px;
- padding:8px 0;
- border-bottom:1px dashed #ddd;
-}
-
-.review:last-child{border-bottom:none}
-
-.avatar{
- width:38px;
- height:38px;
- border-radius:50%;
- background:var(--red-btn);
- color:#fff;
- display:flex;
- align-items:center;
- justify-content:center;
+ border-radius:8px;
+ font-size:16px;
  font-weight:bold;
- flex-shrink:0;
-}
-
-.review-content strong{
- display:block;
  color:var(--red-main);
- font-size:13px;
 }
 
-.stars{color:#fbc02d;font-size:13px}
-
-.footer{
- background:#f1f1f1;
- font-size:12px;
- text-align:center;
- padding:10px;
+.result{
+ margin-top:10px;
+ font-size:14px;
+ color:green;
+ display:none;
 }
 </style>
 </head>
 
 <body>
-
 <div class="wrap">
 
-<img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bannerchinh.png">
-
-<div class="block">
-<h1 class="red">⚠️ NHỎ GỌN – LẮP DỄ – TIẾT KIỆM CHI PHÍ</h1>
-<p>
-<b>SIÊU PHẨM BƠM MINI 12V</b><br>
-✔ Rửa xe – Tưới cây – Bơm bể cá<br>
-✔ Dùng ắc quy / nguồn 12V<br>
-<b>*SỐ LƯỢNG CÓ HẠN</b>
-</p>
-
-<div class="center">
- <div class="price">250K</div>
- <div class="old">300K</div>
-</div>
-
-<a href="#order" class="btn">🔥 ĐẶT MUA NGAY</a>
-</div>
-
-<div class="block">
-<p class="red">❌ VẤN ĐỀ THƯỜNG GẶP</p>
-<ul>
- <li>Không có điện lưới</li>
- <li>Cần bơm di động</li>
- <li>Nhỏ gọn nhưng phải mạnh</li>
-</ul>
-</div>
-
-<div class="block">
-<p class="red">✅ BƠM MINI ĐỘNG CƠ 12V 150W</p>
-<p>XƯỞNG CNC – Bền bỉ – Hoạt động ổn định</p>
-
-<div class="slider-wrapper">
- <button class="slider-btn left" onclick="slideLeft()">‹</button>
- <div class="slider-container" id="slider">
-  <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/banner.jpg">
-  <img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bommini1.png">
- </div>
- <button class="slider-btn right" onclick="slideRight()">›</button>
-</div>
-</div>
-
-<div class="block">
-<p class="red">⭐ PHẢN HỒI KHÁCH HÀNG</p>
-
-<div class="review-box" id="reviewBox">
-
- <div class="review">
-  <div class="avatar">PS</div>
-  <div class="review-content">
-   <div class="stars">⭐⭐⭐⭐⭐</div>
-   <strong>Phạm Sơn</strong>
-   Chạy cả ngày vẫn mát, quá ổn.
-  </div>
- </div>
-
- <div class="review">
-  <div class="avatar">TT</div>
-  <div class="review-content">
-   <div class="stars">⭐⭐⭐⭐⭐</div>
-   <strong>Tám Trần</strong>
-   Tưới cây, rửa sân cực tiện.
-  </div>
- </div>
-
- <div class="review">
-  <div class="avatar">CH</div>
-  <div class="review-content">
-   <div class="stars">⭐⭐⭐⭐⭐</div>
-   <strong>Anh Cường HY</strong>
-   Ăn đứt mấy con bơm TQ tiền triệu.
-  </div>
- </div>
-
- <div class="review">
-  <div class="avatar">MN</div>
-  <div class="review-content">
-   <div class="stars">⭐⭐⭐⭐⭐</div>
-   <strong>Minh Ngọc</strong>
-   Rửa xe tại nhà tiết kiệm nhiều tiền.
-  </div>
- </div>
-
-</div>
-</div>
-
-<div class="block" id="order">
-<p class="red center">📝 ĐẶT HÀNG NHANH</p>
-<form>
- <input placeholder="Họ và tên" required>
- <input placeholder="Số điện thoại" required>
- <input placeholder="Địa chỉ nhận hàng" required>
- <textarea placeholder="Ghi chú"></textarea>
- <button class="btn">📦 XÁC NHẬN ĐẶT HÀNG</button>
-</form>
-</div>
-
 <div class="block center">
-<p>📞 Hotline: <strong>0867050558</strong></p>
-<a href="https://zalo.me/0867050558">Chat Zalo</a>
+ <h2 class="red">🛒 ĐẶT HÀNG NHANH</h2>
+ <p>Giá: <b>250.000đ / 1 sản phẩm</b></p>
 </div>
 
-<div class="footer">
-© XƯỞNG CHẾ TẠO – VŨ THƯ – THÁI BÌNH
+<div class="block">
+<form id="orderForm">
+
+<label>Số lượng</label>
+<select id="quantity" required>
+ <option value="1">1</option>
+ <option value="2">2</option>
+ <option value="3">3</option>
+ <option value="4">4</option>
+ <option value="5">5</option>
+</select>
+
+<label>Họ và tên</label>
+<input id="name" required placeholder="Nhập họ tên">
+
+<label>Số điện thoại</label>
+<input id="phone" required placeholder="Nhập số điện thoại">
+
+<label>Địa chỉ nhận hàng</label>
+<input id="address" required placeholder="Nhập địa chỉ">
+
+<label>Ghi chú</label>
+<textarea id="note" placeholder="Ghi chú thêm"></textarea>
+
+<div class="total-box">
+ Tổng tiền: <span id="total">250.000</span> đ
+</div>
+
+<button class="btn" type="submit">📦 XÁC NHẬN ĐẶT HÀNG</button>
+
+<div class="result" id="result"></div>
+
+</form>
 </div>
 
 </div>
 
 <script>
-const slider=document.getElementById('slider');
-function slideLeft(){slider.scrollBy({left:-slider.offsetWidth,behavior:'smooth'})}
-function slideRight(){slider.scrollBy({left:slider.offsetWidth,behavior:'smooth'})}
+const PRICE = 250000;
+const API_URL = "https://script.google.com/macros/s/AKfycbzJ-vWwzSYYOPA_94vjuXwDk8C4tT2mUonuykl4zbwCivPTUIQZwY17-b1qz-CiKTJd/exec";
 
-const box=document.getElementById('reviewBox');
-let auto=setInterval(scrollReview,40);
-function scrollReview(){
- box.scrollTop+=1;
- if(box.scrollTop+box.clientHeight>=box.scrollHeight){box.scrollTop=0}
-}
-box.onmouseenter=()=>clearInterval(auto);
-box.onmouseleave=()=>auto=setInterval(scrollReview,40);
-box.ontouchstart=()=>clearInterval(auto);
-box.ontouchend=()=>auto=setInterval(scrollReview,40);
+const qty = document.getElementById("quantity");
+const totalEl = document.getElementById("total");
+
+qty.onchange = () => {
+ totalEl.innerText = (qty.value * PRICE).toLocaleString("vi-VN");
+};
+
+document.getElementById("orderForm").onsubmit = async (e)=>{
+ e.preventDefault();
+
+ const data = {
+  name: name.value,
+  phone: phone.value,
+  address: address.value,
+  note: note.value,
+  quantity: qty.value,
+  total: qty.value * PRICE
+ };
+
+ const res = await fetch(API_URL,{
+  method:"POST",
+  body:JSON.stringify(data)
+ });
+
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").innerHTML =
+  "✅ ĐẶT HÀNG THÀNH CÔNG!<br>" +
+  "Số lượng: <b>"+data.quantity+"</b><br>" +
+  "Tổng tiền: <b>"+data.total.toLocaleString("vi-VN")+" đ</b><br>" +
+  "Chúng tôi sẽ liên hệ sớm!";
+ 
+ e.target.reset();
+ totalEl.innerText = PRICE.toLocaleString("vi-VN");
+};
 </script>
 
 </body>
