@@ -1,178 +1,45 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>BƠM MINI 12V 150W</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-:root{
- --red:#b71c1c;
- --btn:#d32f2f;
-}
-
-*{box-sizing:border-box}
-
-body{
- margin:0;
- font-family:Arial,Helvetica,sans-serif;
- background:linear-gradient(180deg,#b71c1c,#8e0000);
-}
-
-.wrap{
- max-width:480px;
- margin:20px auto;
- background:#fff;
- border-radius:14px;
- overflow:hidden;
- box-shadow:0 8px 25px rgba(0,0,0,.3);
-}
-
-.block{padding:16px;border-bottom:1px solid #eee}
-.red{color:var(--red);font-weight:bold}
-.center{text-align:center}
-
-img{width:100%;display:block}
-
-.price{font-size:28px;color:var(--red);font-weight:bold}
-.old{color:#777;text-decoration:line-through;font-size:14px}
-
-.btn{
- width:100%;
- background:var(--btn);
- color:#fff;
- padding:14px;
- font-size:18px;
- border:none;
- border-radius:10px;
- font-weight:bold;
- cursor:pointer;
- box-shadow:0 4px 12px rgba(211,47,47,.5);
-}
-
-input,select,textarea{
- width:100%;
- padding:12px;
- margin:6px 0;
- border:1px solid #ccc;
- border-radius:6px;
- font-size:15px;
-}
-
-.total-box{
- background:#fff5f5;
- border:2px dashed var(--btn);
- padding:10px;
- border-radius:8px;
- margin-top:10px;
- font-weight:bold;
- color:var(--red);
-}
-
-.result{
- margin-top:10px;
- color:green;
- font-size:14px;
- display:none;
-}
-</style>
-</head>
-
-<body>
-
-<div class="wrap">
-
-<img src="https://raw.githubusercontent.com/Phamcuong1405/anhnen/refs/heads/main/bannerchinh.png">
-
-<div class="block center">
- <h2 class="red">⚡ BƠM MINI 12V 150W</h2>
- <div class="price">250.000đ</div>
- <div class="old">300.000đ</div>
-</div>
-
-<div class="block">
-<p class="red">🛒 ĐẶT HÀNG NHANH</p>
-
-<form id="orderForm">
-
-<label>Số lượng</label>
-<select id="quantity" required>
- <option value="1">1</option>
- <option value="2">2</option>
- <option value="3">3</option>
- <option value="4">4</option>
-</select>
-
-<input id="name" placeholder="Họ và tên" required>
-<input id="phone" placeholder="Số điện thoại" required>
-<input id="address" placeholder="Địa chỉ nhận hàng" required>
-<textarea id="note" placeholder="Ghi chú thêm"></textarea>
-
-<div class="total-box">
- Tổng tiền: <span id="total">250.000</span> đ
-</div>
-
-<button type="submit" class="btn">📦 XÁC NHẬN ĐẶT HÀNG</button>
-
-<div class="result" id="result"></div>
-
-</form>
-</div>
-
-<div class="block center">
-📞 <b>0867050558</b><br>
-<a href="https://zalo.me/0867050558">Chat Zalo</a>
-</div>
-
-</div>
-
 <script>
 const PRICE = 250000;
-const API = "https://script.google.com/macros/s/AKfycbwEDtDYSmm2RCg9vmZXL5gfc__tcFnEpl4CJYEpMzcU8F-OI24ERRH0nDSw3p51Wv-f/exec";
+const API = "https://script.google.com/macros/s/AKfycbwb6WVV4cZa1jSzJufJuJnD3f5jx_J8N8TaxrgScMRwMO1hU__UPI01tp7YuSdItddG/exec";
 
 const qty = document.getElementById("quantity");
 const total = document.getElementById("total");
 
 qty.addEventListener("change", ()=>{
- total.innerText = (qty.value * PRICE).toLocaleString("vi-VN");
+  total.innerText = (qty.value * PRICE).toLocaleString("vi-VN");
 });
 
-document.getElementById("orderForm").addEventListener("submit", async function(e){
- e.preventDefault();
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
- const data = {
-  name: document.getElementById("name").value,
-  phone: document.getElementById("phone").value,
-  address: document.getElementById("address").value,
-  note: document.getElementById("note").value,
-  quantity: qty.value,
-  total: qty.value * PRICE
- };
+  const formData = new FormData();
+  formData.append("product","Bơm mini 12V 150W");
+  formData.append("name", document.getElementById("name").value);
+  formData.append("phone", document.getElementById("phone").value);
+  formData.append("address", document.getElementById("address").value);
+  formData.append("note", document.getElementById("note").value);
+  formData.append("quantity", qty.value);
+  formData.append("total", qty.value * PRICE);
 
- try{
-  await fetch(API,{
-   method:"POST",
-   headers:{"Content-Type":"application/json"},
-   body:JSON.stringify(data)
+  fetch(API,{
+    method:"POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(()=>{
+    const r = document.getElementById("result");
+    r.style.display="block";
+    r.innerHTML = `
+      ✅ ĐẶT HÀNG THÀNH CÔNG!<br>
+      Số lượng: <b>${qty.value}</b><br>
+      Tổng tiền: <b>${(qty.value * PRICE).toLocaleString("vi-VN")} đ</b>
+    `;
+    document.getElementById("orderForm").reset();
+    total.innerText = PRICE.toLocaleString("vi-VN");
+  })
+  .catch(err=>{
+    alert("❌ Không gửi được đơn, vui lòng thử lại");
+    console.error(err);
   });
-
-  const r = document.getElementById("result");
-  r.style.display="block";
-  r.innerHTML = `
-   ✅ ĐẶT HÀNG THÀNH CÔNG!<br>
-   Số lượng: <b>${data.quantity}</b><br>
-   Tổng tiền: <b>${data.total.toLocaleString("vi-VN")} đ</b>
-  `;
-
-  this.reset();
-  total.innerText = PRICE.toLocaleString("vi-VN");
-
- }catch(err){
-  alert("❌ Không gửi được đơn, vui lòng thử lại");
-  console.error(err);
- }
 });
 </script>
-
-</body>
-</html>
